@@ -23,7 +23,7 @@ public class LibertyLandBot extends ListenerAdapter
         client.addCommands(new About())
                 .setAlternativePrefix("@mention")
                 .setEmojis("", "", "")
-                .setGame(Game.watching("mc.libertyland.mc"))
+                .setGame(Game.watching("mc.libertylandmc.tk"))
                 .setLinkedCacheSize(6)
                 .setOwnerId(config.getOwner())
                 .setPrefix("!")
