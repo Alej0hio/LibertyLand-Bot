@@ -15,8 +15,8 @@ public class About extends Command
     public void execute(CommandEvent event)
     {
         EmbedBuilder eBuilder = new EmbedBuilder();
-        eBuilder.setDescription("Hola! Soy el Bot de LibertyLand, me podrás usar en un futuro para " +
-                "");
+        eBuilder.setDescription("Hola! Soy el Bot de LibertyLand, en un futuro seré útil para muchas cosas, " +
+                "pero por ahora, puedes logearte en el Foro usandome!");
 
         event.reply(eBuilder.build());
     }
