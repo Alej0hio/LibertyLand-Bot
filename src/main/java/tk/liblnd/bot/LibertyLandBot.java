@@ -55,10 +55,10 @@ public class LibertyLandBot extends Plugin implements EventListener
                     .setEmojis("<:llSuccess:355855058400837634>", "<:llWarn:355855058685919272>",
                             "<:llError:355855058581192715>").build();
 
-            this.jda = new JDABuilder().setToken(config.getToken()).setStatus(OnlineStatus.DO_NOT_DISTURB).setGame(Game.playing("loading..."))
-                    .setAudioEnabled(false).addEventListener(this, client, new Listener(this)).build().awaitReady();
+            new JDABuilder().setToken(config.getToken()).setStatus(OnlineStatus.DO_NOT_DISTURB).setGame(Game.playing("loading..."))
+                    .setAudioEnabled(false).addEventListener(this, client, new Listener(this)).build();
         }
-        catch(LoginException | InterruptedException e)
+        catch(LoginException e)
         {
             LOG.severe(ChatColor.RED+"Error while logging in to Discord");
             e.printStackTrace();
@@ -78,6 +78,7 @@ public class LibertyLandBot extends Plugin implements EventListener
     {
         if(event instanceof ReadyEvent)
         {
+            this.jda = event.getJDA();
             LOG.info(ChatColor.GREEN+"The bot has been started!");
         }
     }
