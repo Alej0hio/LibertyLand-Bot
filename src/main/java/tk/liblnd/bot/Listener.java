@@ -60,10 +60,11 @@ public class Listener extends ListenerAdapter
         for(Message.Attachment att : msg.getAttachments())
             content += att.getUrl()+" ";
 
-        sb.append(formatRoles(msg.getMember())).append(msg.getMember().getUser().getName()).append("#")
-                .append(msg.getMember().getUser().getDiscriminator()).append(" &a» &r").append(content);
+        String preMessage = ChatColor.translateAlternateColorCodes('&', formatRoles(msg.getMember())+
+                msg.getMember().getUser().getName()+"#"+msg.getMember().getUser().getDiscriminator()+" &a» &r");
+        sb.append(preMessage).append(content);
 
-        return ChatColor.translateAlternateColorCodes('&', sb.toString());
+        return sb.toString();
     }
 
     private String formatRoles(Member member)
