@@ -30,6 +30,8 @@ public class LLBot extends Plugin implements EventListener
     public JDA jda;
     public Logger LOG;
 
+    public static String GAME_FORMAT = "%d players in mc.libertylandmc.tk | type !help";
+
     @Override
     public void onEnable()
     {
@@ -64,6 +66,7 @@ public class LLBot extends Plugin implements EventListener
         }
 
         LOG.info("Loading JDA...");
+        Listener listener = new Listener(this);
         try
         {
             CommandClient client = new CommandClientBuilder()
@@ -78,7 +81,7 @@ public class LLBot extends Plugin implements EventListener
                     .addCommands(new EvalCmd(this), new LinkUserCmd(this)).build();
 
             new JDABuilder().setToken(config.getToken()).setStatus(OnlineStatus.DO_NOT_DISTURB).setGame(Game.playing("loading..."))
-                    .setAudioEnabled(false).addEventListener(this, client, new Listener(this)).build();
+                    .setAudioEnabled(false).addEventListener(this, client, listener).build();
         }
         catch(LoginException e)
         {
@@ -86,6 +89,7 @@ public class LLBot extends Plugin implements EventListener
             e.printStackTrace();
         }
 
+        getProxy().getPluginManager().registerListener(this, listener);
         getProxy().getPluginManager().registerCommand(this, new LinkDiscordCmd(this));
     }
 

@@ -1,5 +1,6 @@
 package tk.liblnd.bot;
 
+import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -10,12 +11,15 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.PlayerDisconnectEvent;
+import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.event.EventHandler;
 
 /**
  * @author Artuto
  */
 
-public class Listener extends ListenerAdapter
+public class Listener extends ListenerAdapter implements net.md_5.bungee.api.plugin.Listener
 {
     private LLBot plugin;
 
@@ -99,5 +103,19 @@ public class Listener extends ListenerAdapter
             default:
                 return "&8&l[&7Guest&8&l]&7";
         }
+    }
+
+    @EventHandler
+    public void onPostLogin(PostLoginEvent event)
+    {
+        String game = String.format(LLBot.GAME_FORMAT, plugin.getProxy().getPlayers().size());
+        plugin.jda.getPresence().setGame(Game.watching(game));
+    }
+
+    @EventHandler
+    public void onPlayerDisconnect(PlayerDisconnectEvent event)
+    {
+        String game = String.format(LLBot.GAME_FORMAT, plugin.getProxy().getPlayers().size());
+        plugin.jda.getPresence().setGame(Game.watching(game));
     }
 }
