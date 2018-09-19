@@ -17,7 +17,7 @@ public class Config
 {
     private final Configuration config;
 
-    Config(LibertyLandBot bot) throws IOException
+    Config(LLBot bot) throws IOException
     {
         File dataFolder = bot.getDataFolder();
         File file = new File(dataFolder, "config.yml");
@@ -39,13 +39,28 @@ public class Config
         this.config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);
     }
 
-    public long getOwnerId()
+    long getOwnerId()
     {
         return config.getLong("ownerId");
     }
 
-    public String getToken()
+    String getDbHost()
+    {
+        return config.getString("db_url");
+    }
+
+    String getToken()
     {
         return config.getString("botToken");
+    }
+
+    String getDbUser()
+    {
+        return config.getString("db_user");
+    }
+
+    String getDbPassword()
+    {
+        return config.getString("db_pass");
     }
 }

@@ -11,16 +11,25 @@ import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.hooks.EventListener;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.plugin.Plugin;
+import tk.liblnd.bot.commands.discord.LinkUserCmd;
+import tk.liblnd.bot.commands.minecraft.LinkDiscordCmd;
+import tk.liblnd.bot.database.Database;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Logger;
 
-public class LibertyLandBot extends Plugin implements EventListener
+public class LLBot extends Plugin implements EventListener
 {
     public Config config;
+    public Database db;
     public JDA jda;
     public Logger LOG;
+
+    public ScheduledExecutorService threadpool = Executors.newScheduledThreadPool(40);
 
     @Override
     public void onEnable()
@@ -43,6 +52,18 @@ public class LibertyLandBot extends Plugin implements EventListener
             return;
         }
 
+        try
+        {
+            this.db = new Database(this, config.getDbHost(), config.getDbUser(), config.getDbPassword());
+            LOG.info(ChatColor.GREEN+"Successfully connected to the DB!");
+        }
+        catch(SQLException e)
+        {
+            LOG.severe(ChatColor.RED+"Could not create connection to the MySQL database!");
+            e.printStackTrace();
+            return;
+        }
+
         LOG.info("Loading JDA...");
         try
         {
@@ -53,7 +74,9 @@ public class LibertyLandBot extends Plugin implements EventListener
                     .setAlternativePrefix("@mention")
                     .setServerInvite("https://discord.gg/kcGUDFd")
                     .setEmojis("<:llSuccess:355855058400837634>", "<:llWarn:355855058685919272>",
-                            "<:llError:355855058581192715>").build();
+                            "<:llError:355855058581192715>")
+                    .setScheduleExecutor(Executors.newScheduledThreadPool(40))
+                    .addCommands(new LinkUserCmd(this)).build();
 
             new JDABuilder().setToken(config.getToken()).setStatus(OnlineStatus.DO_NOT_DISTURB).setGame(Game.playing("loading..."))
                     .setAudioEnabled(false).addEventListener(this, client, new Listener(this)).build();
@@ -63,6 +86,8 @@ public class LibertyLandBot extends Plugin implements EventListener
             LOG.severe(ChatColor.RED+"Error while logging in to Discord");
             e.printStackTrace();
         }
+
+        getProxy().getPluginManager().registerCommand(this, new LinkDiscordCmd(this));
     }
 
     @Override
@@ -71,6 +96,7 @@ public class LibertyLandBot extends Plugin implements EventListener
         LOG.info("Disabling LibertyLand Bot...");
         if(!(jda==null))
             jda.shutdown();
+        db.shutdown();
     }
 
     @Override

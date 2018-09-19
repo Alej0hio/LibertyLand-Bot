@@ -17,9 +17,9 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class Listener extends ListenerAdapter
 {
-    private LibertyLandBot plugin;
+    private LLBot plugin;
 
-    Listener(LibertyLandBot plugin)
+    Listener(LLBot plugin)
     {
         this.plugin = plugin;
     }

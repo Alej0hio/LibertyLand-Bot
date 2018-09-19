@@ -1,3 +1,4 @@
 name: LibertyLand Bot
 version: ${project.version}
-main: tk.liblnd.bot.LibertyLandBot
+main: tk.liblnd.bot.LLBot
+author: Artuto
