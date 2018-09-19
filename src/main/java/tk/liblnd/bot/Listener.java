@@ -54,7 +54,7 @@ public class Listener extends ListenerAdapter
 
     private String formatMessage(Message msg)
     {
-        StringBuilder sb = new StringBuilder("&8&l[&9Discord&8&l]");
+        StringBuilder sb = new StringBuilder(ChatColor.translateAlternateColorCodes('&', "&8&l[&9Discord&8&l]"));
 
         String content = msg.getContentDisplay();
         for(Message.Attachment att : msg.getAttachments())
