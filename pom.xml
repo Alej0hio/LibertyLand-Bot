@@ -106,6 +106,7 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-jsr223</artifactId>
             <version>2.4.12</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
