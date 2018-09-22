@@ -117,5 +117,6 @@ public class Listener extends ListenerAdapter implements net.md_5.bungee.api.plu
     {
         String game = String.format(LLBot.GAME_FORMAT, plugin.getProxy().getPlayers().size());
         plugin.jda.getPresence().setGame(Game.watching(game));
+        System.out.println(game);
     }
 }
