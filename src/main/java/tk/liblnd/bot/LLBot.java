@@ -13,6 +13,7 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.plugin.Plugin;
 import tk.liblnd.bot.commands.discord.EvalCmd;
 import tk.liblnd.bot.commands.discord.LinkUserCmd;
+import tk.liblnd.bot.commands.discord.ListCmd;
 import tk.liblnd.bot.commands.minecraft.LinkDiscordCmd;
 import tk.liblnd.bot.database.Database;
 
@@ -78,7 +79,7 @@ public class LLBot extends Plugin implements EventListener
                     .setEmojis("<:llSuccess:355855058400837634>", "<:llWarn:355855058685919272>",
                             "<:llError:355855058581192715>")
                     .setScheduleExecutor(Executors.newScheduledThreadPool(40))
-                    .addCommands(new EvalCmd(this), new LinkUserCmd(this)).build();
+                    .addCommands(new EvalCmd(this), new LinkUserCmd(this), new ListCmd(this)).build();
 
             new JDABuilder().setToken(config.getToken()).setStatus(OnlineStatus.DO_NOT_DISTURB).setGame(Game.playing("loading..."))
                     .setAudioEnabled(false).addEventListener(this, client, listener).build();
