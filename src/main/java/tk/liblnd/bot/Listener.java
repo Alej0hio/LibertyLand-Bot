@@ -115,7 +115,7 @@ public class Listener extends ListenerAdapter implements net.md_5.bungee.api.plu
     @EventHandler
     public void onPlayerDisconnect(PlayerDisconnectEvent event)
     {
-        String game = String.format(LLBot.GAME_FORMAT, plugin.getProxy().getPlayers().size());
+        String game = String.format(LLBot.GAME_FORMAT, plugin.getProxy().getPlayers().size()-1);
         plugin.jda.getPresence().setGame(Game.watching(game));
         System.out.println(game);
     }
