@@ -3,10 +3,10 @@ package tk.liblnd.bot.commands.discord;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.entities.ChannelType;
+import org.codehaus.groovy.jsr223.GroovyScriptEngineFactory;
 import tk.liblnd.bot.LLBot;
 
 import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +29,7 @@ public class EvalCmd extends Command
         this.ownerCommand = true;
         this.guildOnly = false;
 
-        engine = new ScriptEngineManager().getEngineByName("Groovy");
+        engine = new GroovyScriptEngineFactory().getScriptEngine();
 
         try
         {
