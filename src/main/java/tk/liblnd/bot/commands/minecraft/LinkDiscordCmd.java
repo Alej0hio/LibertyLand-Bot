@@ -48,6 +48,7 @@ public class LinkDiscordCmd extends Command
         plugin.db.addUser(id, ((ProxiedPlayer)sender).getUniqueId());
         sender.sendMessage(new TextComponent(ChatColor.GREEN+"Successfully linked your Discord account!"));
         LinkHandler.removeCode(providedCode);
+        LinkHandler.assignRoles(id, ((ProxiedPlayer)sender));
         plugin.LOG.info("Added "+id+" with code "+providedCode);
     }
 }

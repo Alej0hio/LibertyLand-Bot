@@ -31,7 +31,8 @@ public class LLBot extends Plugin implements EventListener
     public JDA jda;
     public Logger LOG;
 
-    public static String GAME_FORMAT = "%d players in mc.libertylandmc.tk | type !help";
+    static String GAME_FORMAT = "%d players in mc.libertylandmc.tk | type !help";
+    private static LLBot instance;
 
     @Override
     public void onEnable()
@@ -92,6 +93,7 @@ public class LLBot extends Plugin implements EventListener
 
         getProxy().getPluginManager().registerListener(this, listener);
         getProxy().getPluginManager().registerCommand(this, new LinkDiscordCmd(this));
+        instance = this;
     }
 
     @Override
@@ -111,5 +113,10 @@ public class LLBot extends Plugin implements EventListener
             this.jda = event.getJDA();
             LOG.info(ChatColor.GREEN+"The bot has been started!");
         }
+    }
+
+    public static LLBot getInstance()
+    {
+        return instance;
     }
 }
