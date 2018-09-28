@@ -5,6 +5,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import tk.liblnd.bot.LLBot;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -25,7 +26,10 @@ public class ListCmd extends Command
     @Override
     public void execute(CommandEvent event)
     {
-        Collection<ProxiedPlayer> players = plugin.getProxy().getPlayers();
+        Collection<ProxiedPlayer> players = new ArrayList<>(plugin.getProxy().getPlayers());
+        /*I need to wait for the PV guy to fix his shit smh
+        players.removeAll(BungeeVanishAPI.get());
+        BungeeVanishAPI*/
 
         if(players.isEmpty())
         {
@@ -36,7 +40,6 @@ public class ListCmd extends Command
         StringBuilder sb = new StringBuilder("Players online on LibertyLand:\n");
         for(ProxiedPlayer p : players)
             sb.append("**").append(p.getName()).append("**, ");
-        sb.substring(0, sb.length()-2);
-        event.replySuccess(sb.toString());
+        event.reply(sb.substring(0, sb.length()-2)+"\n");
     }
 }
