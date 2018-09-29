@@ -37,9 +37,10 @@ public class ListCmd extends Command
             return;
         }
 
-        StringBuilder sb = new StringBuilder("Players online on LibertyLand:\n");
+        StringBuilder sb = new StringBuilder();
         for(ProxiedPlayer p : players)
             sb.append(":white_medium_small_square: **").append(p.getName()).append("**, ");
-        event.reply(sb.substring(0, sb.length()-2)+"\n");
+        EmbedBuilder embed = new EmbedBuilder().appendDescription(sb.substring(0, sb.length()-2)+"\n");
+        event.reply(new MessageBuilder().setEmbed(embed.build()).setContent("Players online on LibertyLand:").build());
     }
 }
