@@ -39,7 +39,7 @@ public class ListCmd extends Command
 
         StringBuilder sb = new StringBuilder("Players online on LibertyLand:\n");
         for(ProxiedPlayer p : players)
-            sb.append("**").append(p.getName()).append("**, ");
+            sb.append(":white_medium_small_square: **").append(p.getName()).append("**, ");
         event.reply(sb.substring(0, sb.length()-2)+"\n");
     }
 }
