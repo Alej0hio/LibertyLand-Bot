@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @author Artuto
+ * @author Artuto, Apfel
  */
 
 public class ListCmd extends Command
