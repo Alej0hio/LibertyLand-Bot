@@ -2,6 +2,8 @@ package tk.liblnd.bot.commands.discord;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.MessageBuilder;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import tk.liblnd.bot.LLBot;
 
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @author Artuto
+ * @author Artuto, Apfel
  */
 
 public class ListCmd extends Command
@@ -37,9 +39,10 @@ public class ListCmd extends Command
             return;
         }
 
-        StringBuilder sb = new StringBuilder("Players online on LibertyLand:\n");
+        StringBuilder sb = new StringBuilder();
         for(ProxiedPlayer p : players)
-            sb.append("**").append(p.getName()).append("**, ");
-        event.reply(sb.substring(0, sb.length()-2)+"\n");
+            sb.append("> **").append(p.getName()).append("**, ");
+        EmbedBuilder embed = new EmbedBuilder().appendDescription(sb.substring(0, sb.length()-2)+"\n");
+        event.reply(new MessageBuilder().setEmbed(embed.build()).setContent("Players online on LibertyLand:").build());
     }
 }
