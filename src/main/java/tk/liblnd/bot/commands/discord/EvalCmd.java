@@ -79,11 +79,11 @@ public class EvalCmd extends Command
 
             if(out == null || String.valueOf(out).isEmpty()) event.reactSuccess();
             else
-                event.replySuccess("Done! Output:\n```"+out.toString().replaceAll(event.getJDA().getToken(), "Nice try.")+"```");
+                event.replySuccess("Done! Output:\n```java\n"+out.toString().replaceAll(event.getJDA().getToken(), "Nice try.")+"```");
         }
         catch(ScriptException e2)
         {
-            event.replyError("Error! Output:\n```"+e2+" ```");
+            event.replyError("Error! Output:\n```java\n"+e2+" ```");
         }
     }
 }
