@@ -41,8 +41,8 @@ public class ListCmd extends Command
 
         StringBuilder sb = new StringBuilder();
         for(ProxiedPlayer p : players)
-            sb.append("> **").append(p.getName()).append("**, ");
-        EmbedBuilder embed = new EmbedBuilder().appendDescription(sb.substring(0, sb.length()-2)+"\n");
+            sb.append(":white_medium_small_square: **").append(p.getName()).append("**\n");
+        EmbedBuilder embed = new EmbedBuilder().setDescription(sb).setColor(event.getSelfMember().getColor());
         event.reply(new MessageBuilder().setEmbed(embed.build()).setContent("Players online on LibertyLand:").build());
     }
 }
