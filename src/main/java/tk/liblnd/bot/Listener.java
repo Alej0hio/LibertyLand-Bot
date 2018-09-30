@@ -43,7 +43,8 @@ public class Listener extends ListenerAdapter implements net.md_5.bungee.api.plu
         if(tc.getIdLong()==Const.TOWNY_CHANNEL)
         {
             server = plugin.getProxy().getServerInfo("towny");
-            if(event.getMessage().getContentRaw().isEmpty()) return;
+            if(event.getMessage().getContentRaw().isEmpty())
+                return;
             toSend = new ComponentBuilder(formatMessage(event.getMessage())).create();
             for(ProxiedPlayer p : server.getPlayers())
                 p.sendMessage(toSend);
@@ -51,7 +52,8 @@ public class Listener extends ListenerAdapter implements net.md_5.bungee.api.plu
         else if(tc.getIdLong()==Const.CREATIVE_CHANNEL)
         {
             server = plugin.getProxy().getServerInfo("creative");
-            if(event.getMessage().getContentRaw().isEmpty()) return;
+            if(event.getMessage().getContentRaw().isEmpty())
+                return;
             toSend = new ComponentBuilder(formatMessage(event.getMessage())).create();
             for(ProxiedPlayer p : server.getPlayers())
                 p.sendMessage(toSend);
