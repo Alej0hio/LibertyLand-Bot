@@ -110,13 +110,13 @@
         </dependency>
 
         <!-- PremiumVanish -->
-        <dependency>
+        <!--<dependency>
             <groupId>de.myzelyam</groupId>
             <artifactId>PremiumVanish</artifactId>
             <version>2.0.0</version>
-            <!--<scope>provided</scope>
-            <systemPath>${basedir}/lib/PV.jar</systemPath>-->
-        </dependency>
+            <scope>provided</scope>
+            <systemPath>${basedir}/lib/PV.jar</systemPath>
+        </dependency>-->
 
         <!-- LuckPerms -->
         <dependency>
