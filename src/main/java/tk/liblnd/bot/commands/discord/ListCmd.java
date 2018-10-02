@@ -43,6 +43,6 @@ public class ListCmd extends Command
         for(ProxiedPlayer p : players)
             sb.append(":white_medium_small_square: **").append(p.getName()).append("**\n");
         EmbedBuilder embed = new EmbedBuilder().setDescription(sb).setColor(event.getSelfMember().getColor());
-        event.reply(new MessageBuilder().setEmbed(embed.build()).setContent("Players online on LibertyLand:").build());
+        event.reply(new MessageBuilder().setEmbed(embed.build()).setContent("<:online:484806206909710338> Players online on LibertyLand:").build());
     }
 }
