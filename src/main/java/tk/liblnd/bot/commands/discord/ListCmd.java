@@ -23,6 +23,8 @@ public class ListCmd extends Command
         this.plugin = plugin;
         this.name = "list";
         this.help = "Shows the list of online players";
+        this.cooldown = 20;
+        this.aliases = new String[]{"players"};
     }
 
     @Override
