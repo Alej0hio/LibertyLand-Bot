@@ -43,8 +43,8 @@ public class ListCmd extends Command
         for(ProxiedPlayer p : players)
             sb.append(":white_medium_small_square: **").append(p.getName()).append("**\n");
         EmbedBuilder embed = new EmbedBuilder().setColor(event.getSelfMember().getColor());
-        if(sb.length() > 128)
-            embed.setDescription("**More than 128 Members are on LibertyLand.**\nDue to a character limit in embeds, we wont show more players.");
+        if(sb.length() >= 2048)
+            embed.setDescription("**Too many players are on LibertyLand.**\nDue to a character limit in embeds, we wont show a list of all players.");
         else
             embed.setDescription(sb);
         event.reply(new MessageBuilder().setEmbed(embed.build()).setContent("Players online on LibertyLand:").build());
