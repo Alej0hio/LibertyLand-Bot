@@ -23,6 +23,7 @@ public class ListCmd extends Command
         this.plugin = plugin;
         this.name = "list";
         this.help = "Shows the list of online players";
+        this.aliases = new String[]{"players"};
     }
 
     @Override
@@ -42,7 +43,11 @@ public class ListCmd extends Command
         StringBuilder sb = new StringBuilder();
         for(ProxiedPlayer p : players)
             sb.append(":white_medium_small_square: **").append(p.getName()).append("**\n");
-        EmbedBuilder embed = new EmbedBuilder().setDescription(sb).setColor(event.getSelfMember().getColor());
-        event.reply(new MessageBuilder().setEmbed(embed.build()).setContent("<:online:484806206909710338> Players online on LibertyLand:").build());
+        EmbedBuilder embed = new EmbedBuilder().setColor(event.getSelfMember().getColor());
+        if(sb.length() > 2048)
+            embed.setDescription("**Too many players are on LibertyLand.**\nDue to a character limit in embeds, we wont show a list of all players.");
+        else
+            embed.setDescription(sb);
+        event.reply(new MessageBuilder().setEmbed(embed.build()).setContent("Players online on LibertyLand:").build());
     }
 }
